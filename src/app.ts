@@ -25,10 +25,4 @@ app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
 
-sequelize.authenticate().then(() => {
-    console.log('Conectado ao postgres com sucesso');
-}). catch((error: Error) => {
-    console.log('Não foi possível conectar ao postgres: ' + error);
-});
-
-export default router;
+sequelize();
