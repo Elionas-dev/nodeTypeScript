@@ -1,4 +1,5 @@
-import express, { Application, Request, Response, Router } from 'express';
+import express, { Application, NextFunction, Request, Response, Router } from 'express';
+import { nextTick } from 'process';
 import * as controller from '../controllers/Filmcontroller';
 
 const router: Application = express();
@@ -7,8 +8,12 @@ router.get('/', async (req:Request, res: Response ) => {
     res.send(await controller.getAll());
 });
 
-router.get('/:id', async (req: Request, res: Response) => {
-    res.send(await controller.getById(parseInt(req.params.id)));
+router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        res.send(await controller.getById(parseInt(req.params.id)));
+    } catch (error) {
+        next(error);
+    }
 });
 
 router.post('/', async (req: Request, res: Response) => {

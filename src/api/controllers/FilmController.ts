@@ -1,4 +1,4 @@
-import { FilmInput, FilmOutput } from '../../app/models/FilmModel';
+import { FilmInput, FilmOutput } from '../../database/models/FilmModel';
 import * as service from '../../services/FilmService';
 
 export const getAll = async (): Promise<FilmOutput[]> => {
