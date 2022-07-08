@@ -1,5 +1,4 @@
 import express, { Application, NextFunction, Request, Response, Router } from 'express';
-import { nextTick } from 'process';
 import * as controller from '../controllers/Filmcontroller';
 
 const router: Application = express();
