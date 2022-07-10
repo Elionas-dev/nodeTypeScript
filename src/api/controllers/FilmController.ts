@@ -1,22 +1,24 @@
+import { Request, Response, NextFunction } from 'express';
 import { FilmInput, FilmOutput } from '../../database/models/FilmModel';
 import * as service from '../../services/FilmService';
 
-export const getAll = async (): Promise<FilmOutput[]> => {
-   return await service.getAll();
+export const getAll = async (req: Request, res: Response) => {
+   res.send(await service.getAll());
 };
 
-export const getById = async (id: number): Promise<FilmOutput> => {
-   return await service.getById(id);
+export const getById = async (req: Request, res: Response, next: NextFunction) => {
+   res.send(await service.getById(parseInt(req.params.id)));
 };
 
-export const create = async (payload: FilmInput): Promise<FilmOutput> => {
-   return service.create(payload);
+export const create = async (req: Request, res: Response) => {
+   res.status(201).send(await service.create(req.body));
 };
 
-export const updateById = async (id: number, payload: FilmInput): Promise<FilmOutput> => {
-   return await service.updateById(id, payload);
+export const updateById = async (req: Request, res: Response) => {
+   res.send(await service.updateById(parseInt(req.params.id), req.body));
 };
 
-export const deleteById = async (id: number): Promise<void> => {
-   await service.deleteById(id);
+export const deleteById = async (req: Request, res: Response) => {
+   await service.deleteById(parseInt(req.params.id));
+   res.status(204).send();
 };
