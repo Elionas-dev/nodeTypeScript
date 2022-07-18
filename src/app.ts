@@ -1,7 +1,7 @@
 import express, {Express, NextFunction, request, Request, Response} from 'express';
 import bodyParser from 'body-parser';
 import { errors } from 'celebrate';
-import 'express-async-erros';
+//import 'express-async-erros';
 
 import routes from './api/routes/index';
 import sequelize from './database/sequelize';

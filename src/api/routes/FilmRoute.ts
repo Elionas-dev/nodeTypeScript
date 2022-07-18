@@ -12,6 +12,6 @@ router.post('/', FilmCreateValidation, controller.create);
 
 router.put('/:id', FilmUpdateValidation, controller.updateById);
 
-router.delete('/id', controller.deleteById);
+router.delete('/:id', controller.deleteById);
 
 export default router;
